@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> Megaklinikka-exercise </title>
+  </head>
+  <body>
+    <br /><br /><br />
+    <form id='inputForm'>
+        <input type='text' id='inputText' required />
+        <button type='submit'>Submit!</button>
+    </form>
+    <div id="app"></div>
+    
+    <script>
+        function createRectangularFrame(inputText) {
+            
+            var sepText = inputText.split(' ');
+            var longestWordLen = 0;
+            var extraStars = 2;
+            var longestWordLen = 0;
+            var outputText = '';
+            var outputCommonText = '';
+            
+            // Finding the longest text length`
+            for (txt in sepText){
+                if( sepText[txt].length > longestWordLen ){
+                    longestWordLen = sepText[txt].length;
+                }
+            }
+            
+            // Adding default first line 
+            outputCommonText = "*".repeat(longestWordLen + extraStars * 2) + '\n';            
+            outputText += outputCommonText;
+            
+            for (txt in sepText){
+                outputText += '* ' + sepText[txt] + " ".repeat(longestWordLen - sepText[txt].length) + ' *' + '\n';
+            }
+            
+            outputText += outputCommonText;
+            
+            console.log(outputText);
+        }
+        window.onload = function() {
+            
+            document.getElementById("inputForm").onsubmit = function() {
+                
+                var inputText = document.getElementById("inputText").value;
+                createRectangularFrame(inputText);
+                
+                return false;
+            };
+            createRectangularFrame("Hello World in a frame some more texts are available here");
+        };
+    </script>
+  </body>
+</html>
